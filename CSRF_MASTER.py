@@ -1,3 +1,4 @@
+import urllib.parse
 x="""
 ⠀⠀⠀⠀⠀⠀⢐⣿⣿⣿⣿⣿⡟⠉⠀⠀⣼⣿⢯⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠹⣿⣿⣿⠀⠈⠉⢿⣿⣿⣿⣿⣿⡍⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⢸⣏⢿⣿⣿⣿⣿⠇⠀⠀⢸⡿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⠻⣿⣇⠘⣿⣿⠀⢀⡀⢻⣿⣿⣿⣿⡿⢟⡇⠀⠀⠀⠀⠀⠀⠀
@@ -28,12 +29,17 @@ Nfile=str(input("Enter The Name Of The File You Want To Write The Html-Code To:"
 # URL & Method input
 URL=str(input("Please Enter the Url Of The Site:"))
 Method=str(input("Please Enter the Method of This Request:"))
+if "https://" in URL:
+    Encodedurl=urllib.parse.unquote(URL)
+else:
+    URL="https://"+URL
+    Encodedurl=urllib.parse.unquote(URL)
 #--------------Writing-------------------
 file1=open(Nfile,"a")
 file1.write("""<html>
 	<body>
 		<form method="%s" action="%s">
-"""%(Method.upper(),URL))
+"""%(Method.upper(),Encodedurl))
 
 # Parameters & Values 
 a=int(input("Please Enter The numebr of parameters in your request:"))
