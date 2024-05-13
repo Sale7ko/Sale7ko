@@ -30,10 +30,10 @@ Nfile=str(input("Enter The Name Of The File You Want To Write The Html-Code To:"
 URL=str(input("Please Enter the Url Of The Site:"))
 Method=str(input("Please Enter the Method of This Request:"))
 if "https://" in URL:
-    Encodedurl=urllib.parse.unquote(URL)
+    Encodedurl=urllib.parse.unquote_plus(URL)
 else:
     URL="https://"+URL
-    Encodedurl=urllib.parse.unquote(URL)
+    Encodedurl=urllib.parse.unquote_plus(URL)
 #--------------Writing-------------------
 file1=open(Nfile,"a")
 file1.write("""<html>
